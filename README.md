@@ -11,6 +11,7 @@ Tracking progress of bug audits and fixes across all `stevedores-org` repositori
 | **agy-cli-1** | Rust / Nix | Done | 0 | ✅ Clean |
 | **ai-agent-ci** | Rust / Go | Done | 0 | ✅ Clean |
 | **aivcs** | Rust / Nix | Done | 0 | ✅ Clean |
+| **aivcs-human-in-the-loop** | TS (React/Vite) | Done | 1 | ✅ Fixed (PR #21 open) |
 | **data-fabric** | Rust / TS | Done | 0 | ✅ Clean |
 | **gh-bot** | K8s Manifests | Done | 0 | ✅ Clean |
 | **local-ci** | Go / Nix | Done | 0 | ✅ Clean |
@@ -39,6 +40,11 @@ Tracking progress of bug audits and fixes across all `stevedores-org` repositori
 * **Bug/Issue**: Compiles correctly, but 11 tests under `graphrag-core` failed (primarily under `rograg::intent_classifier`, `rograg::logic_form`, `rograg::streaming`, and `rograg::validator`). Additionally, integration tests `graph::incremental::tests::test_basic_entity_upsert`, `test_production_graph_store_entity_upsert`, `test_production_graph_store_event_publishing`, and `test_production_graph_store_relationship_upsert` hung indefinitely (timed out/blocked on entity upsert).
 * **Fix**: Needs investigation into mock databases/services dependencies required for these tests.
 
+### 4. `aivcs-human-in-the-loop` (develop branch)
+* **Bug**: The stages in `.local-ci.toml` were misconfigured with the `command` key instead of `cmd`, which caused `local-ci` to fail parsing and disable all stages by default (reporting 0 stages run). Additionally, the default commands for `lint` and `test` would hard-fail locally because ESLint and test files are not yet scaffolded.
+* **Fix**: Corrected the configuration keys to `cmd`, enabled all checks by default, and wrapped the `lint` and `test` stages in forward-compatible check wrappers that output a skip message instead of failing when config/test files are absent.
+* **PR**: Open targeting `develop` (PR #21).
+
 ---
 
-*Last Updated: 2026-06-11 20:12:00-05:00*
+*Last Updated: 2026-06-11 20:14:00-05:00*
