@@ -9,17 +9,17 @@ Tracking progress of bug audits and fixes across all `stevedores-org` repositori
 | **oxidizedgraphRAG** | Rust | Done | 2 | ✅ Fixed (PRs pending) |
 | **agent-scheduler** | Rust / Nix | Done | 0 | ✅ Clean |
 | **agy-cli-1** | Rust / Nix | Done | 0 | ✅ Clean |
-| **ai-agent-ci** | Rust / Go | Pending | 0 | ⏳ Auditing |
-| **aivcs** | Rust / Nix | Pending | 0 | ⏳ Auditing |
+| **ai-agent-ci** | Rust / Go | Done | 0 | ✅ Clean |
+| **aivcs** | Rust / Nix | Done | 0 | ✅ Clean |
 | **data-fabric** | Rust / TS | Done | 0 | ✅ Clean |
 | **gh-bot** | K8s Manifests | Done | 0 | ✅ Clean |
 | **local-ci** | Go / Nix | Done | 0 | ✅ Clean |
-| **mom-stevedores** | Rust | Pending | 0 | ⏳ Auditing |
+| **mom-stevedores** | Rust | Done | 0 | ✅ Clean |
 | **nix-cache** | TS (Bun) | Done | 0 | ✅ Clean |
 | **ogre** | Documentation | Done | 0 | ✅ Clean |
-| **oxidizedgraph** | Rust / Nix | Pending | 0 | ⏳ Auditing |
-| **oxidizedMCP** | Rust | Pending | 0 | ⏳ Auditing |
-| **oxidizedRAG** | Rust / Nix | Pending | 0 | ⏳ Auditing |
+| **oxidizedgraph** | Rust / Nix | Done | 0 | ✅ Clean |
+| **oxidizedMCP** | Rust | Done | 0 | ✅ Clean |
+| **oxidizedRAG** | Rust / Nix | Done | 11 | ⚠️ 11 tests failed; integration tests hung |
 
 ---
 
@@ -35,6 +35,10 @@ Tracking progress of bug audits and fixes across all `stevedores-org` repositori
 * **Fix**: Changed dependencies to use relative path declarations (`{ path = "../rag-core" }` and `{ path = "../embeddings" }`) to match the rest of the workspace members.
 * **PR**: Open targeting `main` (or `develop` once merged).
 
+### 3. `oxidizedRAG` (develop branch)
+* **Bug/Issue**: Compiles correctly, but 11 tests under `graphrag-core` failed (primarily under `rograg::intent_classifier`, `rograg::logic_form`, `rograg::streaming`, and `rograg::validator`). Additionally, integration tests `graph::incremental::tests::test_basic_entity_upsert`, `test_production_graph_store_entity_upsert`, `test_production_graph_store_event_publishing`, and `test_production_graph_store_relationship_upsert` hung indefinitely (timed out/blocked on entity upsert).
+* **Fix**: Needs investigation into mock databases/services dependencies required for these tests.
+
 ---
 
-*Last Updated: 2026-06-11 13:42:00-05:00*
+*Last Updated: 2026-06-11 20:12:00-05:00*
